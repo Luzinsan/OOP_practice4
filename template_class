@@ -1,0 +1,36 @@
+#include <iostream>
+#include "Array.h"
+#include <string>
+
+int main()
+{
+	Array<std::string, double> doubleDict(10);
+	Array<int, char> charDict(26);
+
+
+	//----inicializing
+	for (int count = 0; count < doubleDict.getLength(); ++count)
+		doubleDict.setDict(count, 
+					       std::string("#").append(std::to_string(count)).append(": "), 
+						   count*0.5 + 100.5);
+
+	for (int count = 0; count < charDict.getLength(); ++count)
+		charDict.setDict(count, count + 65, count + 65);
+	
+
+	//----Output: doubleDict<std::string, double>
+	for (int count = 0; count < doubleDict.getLength(); ++count)
+		std::cout << doubleDict[count * 0.5 + 100.5] << '\t'
+				  << doubleDict[std::string("#").append(std::to_string(count)).append(": ")] << std::endl;
+		
+	std::cout << std::endl;
+
+	//----Output: charDict<int, char>
+	for (int count = 0; count < charDict.getLength(); ++count)
+		std::cout << charDict[static_cast<char>(count + 65)] << '\t'
+				  << charDict[count + 65] << std::endl;
+
+
+
+	return 0;
+}
